@@ -1,0 +1,16 @@
+﻿@page
+@using WebApplicationASP.Components
+@model IndexModel
+@{
+    ViewData["Title"] = "Hemma hos oss på";
+}
+
+<div class="text-center">
+    
+</div>
+
+@(await Html.RenderComponentAsync<ProductList>(RenderMode.ServerPrerendered))
+
+<script src="_framework/blazor.server.js"></script>
+
+
