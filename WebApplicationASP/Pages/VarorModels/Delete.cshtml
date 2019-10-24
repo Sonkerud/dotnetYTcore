@@ -1,0 +1,15 @@
+﻿@page "{varorId}"
+@model WebApplicationASP.Pages.VarorModels.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Ta bort vara</h2>
+<div class="alert-dark">
+    Vill du verkligen ta bort @Model.Varor.Name från inköpslistan?
+</div>
+<br />
+<form method="post">
+    <button type="submit" class="btn btn-danger">Jajjamen!</button>
+    <a asp-page="List" class="btn btn-dark">Nej, det var fel!</a>
+</form>

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Varor.Data;
 using WebApplicationASP.Models;
 using WebApplicationASP.Services;
 
@@ -33,6 +34,7 @@ namespace WebApplicationASP
             services.AddServerSideBlazor();
             services.AddControllers();
             services.AddTransient<JsonFileProductService>();
+            services.AddSingleton<IVarorData, InMemoryVarorData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

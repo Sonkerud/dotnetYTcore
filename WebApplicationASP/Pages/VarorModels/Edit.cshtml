@@ -1,0 +1,25 @@
+﻿@page "{varorId:int?}"
+@model WebApplicationASP.Pages.VarorModels.EditModel
+@{
+        ViewData["Title"] = "Edit";
+}
+
+<h1>@Model.VarorModel.Name</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="VarorModel.Id" />
+    <div class="form-group">
+        <label asp-for="VarorModel.Name">Namn på vara:</label>
+        <input asp-for="VarorModel.Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="VarorModel.Price">Pris:</label>
+        <input asp-for="VarorModel.Price" class="form-control" />
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Lägg till vara i listan!</button>
+</form>
+
+<hr />
+<a asp-page=".\List" class="btn btn-outline-danger">Tillbaka till lista</a>
