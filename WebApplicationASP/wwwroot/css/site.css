@@ -152,3 +152,20 @@ ul {
     background: -moz-linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
     background: linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
 }
+
+/*.carouselImg img {
+    width: auto;
+    height: 500px;
+    max-height: 500px;
+}*/
+
+.textwithshadow h3 {
+    color: white;
+    text-shadow: 10px 10px 20px #000000;
+}
+.overlaytext {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
