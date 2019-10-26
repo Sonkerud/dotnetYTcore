@@ -10,6 +10,8 @@ namespace Varor.Data
     {
         IEnumerable<VarorModel> GetVaraByName(string name);
         IEnumerable<VarorModel> GetVaraByName();
+        IEnumerable<VarorModel> GetHungryVaraByName(string name);
+
         VarorModel GetById(int id);
         VarorModel Update(VarorModel updatedVara);
         VarorModel Add(VarorModel newVara);

@@ -18,17 +18,24 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+               
                 <ul class="navbar-nav ml-auto">
-                    @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/VarorModels/">Privacy</a>
-                        </li>*@
+                    <li class="nav-item dropdown">
+                        <div class="btn-group">
+                            <button type="button" class="btn text-white" style="background-color: #1350CA;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Färdiga Listor
+                            </button>
+                            <div class="dropdown-menu bg-primary">
+                                <a class="dropdown-item bg-primary text-white" asp-area="" asp-page="./ListHungry">Fruktsallad för den hungrige</a>
+                            </div>
+                        </div>
+                    </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary   active" asp-area="" asp-page="/VarorModels/List">Min Inköpslista</a>
-                        
+                        <a class="btn text-white" style="background-color: #1350CA;" asp-area="" asp-page="/VarorModels/List">Min Inköpslista</a>
+
+                    </li>
                 </ul>
             </div>
         </div>

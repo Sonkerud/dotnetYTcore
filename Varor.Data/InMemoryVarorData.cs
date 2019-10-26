@@ -9,13 +9,24 @@ namespace Varor.Data
         //readonly List<VarorModel> varor;
 
         public static List<VarorModel> varor;
+        public static List<VarorModel> varorHungry;
+
 
         public InMemoryVarorData()
         {
+            varorHungry = new List<VarorModel>()
+            {
+                new VarorModel { Id = 1, Name = "Banan", Price = 12},
+                new VarorModel { Id = 2, Name = "Grädde", Price = 22},
+                new VarorModel { Id = 3, Name = "Jordnötter", Price = 31.50},
+                new VarorModel { Id = 4, Name = "Kolasås", Price = 17},
+                new VarorModel { Id = 5, Name = "Krusbär", Price = 30}
+            };
+
             varor = new List<VarorModel>()
             {
                 new VarorModel { Id = 1, Name = "Banan", Price = 12},
-                new VarorModel { Id = 2, Name = "Blåbär", Price = 22},
+                new VarorModel { Id = 2, Name = "Grädde", Price = 22},
                 new VarorModel { Id = 3, Name = "Apelsin", Price = 31.50},
                 new VarorModel { Id = 4, Name = "Peppar", Price = 3.50},
                 new VarorModel { Id = 5, Name = "Krusbär", Price = 30}
@@ -54,6 +65,14 @@ namespace Varor.Data
         public IEnumerable<VarorModel> GetVaraByName(string name = null)
         {
             return from r in varor
+                   where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
+                   orderby r.Name
+                   select r;
+        }
+
+        public IEnumerable<VarorModel> GetHungryVaraByName(string name = null)
+        {
+            return from r in varorHungry
                    where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
                    orderby r.Name
                    select r;

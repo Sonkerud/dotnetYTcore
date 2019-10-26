@@ -10,7 +10,7 @@ using VarorLibrary;
 
 namespace WebApplicationASP.Pages.VarorModels
 {
-    public class ListModel : PageModel
+    public class ListHungryModel : PageModel
     {
         private readonly IConfiguration config;
         private readonly IVarorData varorData;
@@ -55,7 +55,7 @@ namespace WebApplicationASP.Pages.VarorModels
             }
         }
 
-        public ListModel(IConfiguration config,
+        public ListHungryModel(IConfiguration config,
                          IVarorData varorData)
         {
             this.config = config;
@@ -64,7 +64,7 @@ namespace WebApplicationASP.Pages.VarorModels
         public void OnGet(string searchTerm)
         {
             Message = config["Message"];
-            Varor = varorData.GetVaraByName(SearchTerm);
+            Varor = varorData.GetHungryVaraByName(SearchTerm);
             MostExpensive(Varor);
             Cheapest(Varor);
         }

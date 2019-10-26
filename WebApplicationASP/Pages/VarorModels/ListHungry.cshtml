@@ -1,9 +1,8 @@
 ﻿@page
-@model WebApplicationASP.Pages.VarorModels.ListModel
+@model WebApplicationASP.Pages.VarorModels.ListHungryModel
 @{
-    ViewData["Title"] = "List";
+    ViewData["Title"] = "ListHungry";
 }
-
 
 <h3>Sök i din inköpslista</h3>
 
@@ -23,9 +22,7 @@
 
 </form>
 
-
 <a asp-page=".\Edit" class="btn btn-outline-primary m-1">Lägg till vara</a> <a class="btn btn-secondary text-white"> Summa för varor i listan: @Model.Varor.Sum(x => x.Price) kr</a>
-         
 <br />
 <br />
 <div class="card-columns">
@@ -50,7 +47,7 @@
                 </a>
             </div>
         </div>
-       
+
     }
 </div>
 <br />
@@ -122,3 +119,4 @@ else if (Model.cheapestList.Count() > 1)
 
     </div>
 }
+
