@@ -168,4 +168,9 @@ ul {
     color: white;
     padding-left: 20px;
     padding-right: 20px;
+    font-size: 60vw;
+}
+.overlaytext h3{
+ 
+    font-size: 3vw;
 }
