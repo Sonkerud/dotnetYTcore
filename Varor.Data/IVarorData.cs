@@ -11,6 +11,8 @@ namespace Varor.Data
         IEnumerable<VarorModel> GetVaraByName(string name);
         IEnumerable<VarorModel> GetVaraByName();
         IEnumerable<VarorModel> GetHungryVaraByName(string name);
+        IEnumerable<VarorModel> GetCitrusVaraByName(string name);
+
 
         VarorModel GetById(int id);
         VarorModel Update(VarorModel updatedVara);

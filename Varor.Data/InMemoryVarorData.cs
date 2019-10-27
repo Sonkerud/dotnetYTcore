@@ -10,6 +10,8 @@ namespace Varor.Data
 
         public static List<VarorModel> varor;
         public static List<VarorModel> varorHungry;
+        public static List<VarorModel> citrus;
+
 
 
         public InMemoryVarorData()
@@ -20,16 +22,26 @@ namespace Varor.Data
                 new VarorModel { Id = 2, Name = "Grädde", Price = 22},
                 new VarorModel { Id = 3, Name = "Jordnötter", Price = 31.50},
                 new VarorModel { Id = 4, Name = "Kolasås", Price = 17},
-                new VarorModel { Id = 5, Name = "Krusbär", Price = 30}
+                new VarorModel { Id = 5, Name = "Krusbär", Price = 13},
+                new VarorModel { Id = 6, Name = "Ananas", Price = 19.90},
+                new VarorModel { Id = 7, Name = "Revbensspjäll", Price = 17}
+
             };
 
             varor = new List<VarorModel>()
             {
-                new VarorModel { Id = 1, Name = "Banan", Price = 12},
-                new VarorModel { Id = 2, Name = "Grädde", Price = 22},
-                new VarorModel { Id = 3, Name = "Apelsin", Price = 31.50},
-                new VarorModel { Id = 4, Name = "Peppar", Price = 3.50},
-                new VarorModel { Id = 5, Name = "Krusbär", Price = 30}
+            };
+
+            citrus = new List<VarorModel>()
+            {
+                new VarorModel { Id = 1, Name = "Apelsin", Price = 9.90},
+                new VarorModel { Id = 2, Name = "Lime", Price = 23},
+                new VarorModel { Id = 3, Name = "Satsumas", Price = 12.90},
+                new VarorModel { Id = 4, Name = "Klementin", Price = 59},
+                new VarorModel { Id = 4, Name = "Mandarin", Price = 39.90},
+                new VarorModel { Id = 4, Name = "Ugli", Price = 29.90},
+
+
             };
         }
 
@@ -73,6 +85,14 @@ namespace Varor.Data
         public IEnumerable<VarorModel> GetHungryVaraByName(string name = null)
         {
             return from r in varorHungry
+                   where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
+                   orderby r.Name
+                   select r;
+        }
+
+        public IEnumerable<VarorModel> GetCitrusVaraByName(string name = null)
+        {
+            return from r in citrus
                    where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
                    orderby r.Name
                    select r;

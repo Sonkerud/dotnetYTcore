@@ -1,30 +1,12 @@
 ﻿@page
-@model WebApplicationASP.Pages.VarorModels.ListModel
+@model WebApplicationASP.Pages.VarorModels.ListCitrusModel
 @{
-    ViewData["Title"] = "List";
+    ViewData["Title"] = "ListCitrus";
 }
 
+<h3>Ljuvlig fruktsallad för den som gillar Citrus</h3>
 
-<h3>Sök i din inköpslista</h3>
 
-<form method="get">
-    <div class="form-group">
-        <div class="input-group">
-            <input type="search" class="form-control" asp-for="SearchTerm" />
-            <span class="input-group-btn">
-                <button class="btn btn default">
-                    <i class="fas fa-search"></i>
-                </button>
-            </span>
-        </div>
-
-    </div>
-</form>
-
-<a asp-page=".\Edit" class="btn btn-outline-primary m-1">Lägg till vara</a> <a class="btn btn-secondary text-white"> Summa för varor i listan: @Model.Varor.Sum(x => x.Price) kr</a>
-         
-<br />
-<br />
 <div class="card-columns">
     @foreach (var vara in Model.Varor)
     {
@@ -36,18 +18,13 @@
                 <p class="card-text font-weight-bold">Pris: @vara.Price kr</p>
             </div>
             <div class="card-footer text-center bg-white">
-                <a class="btn btn-lg" asp-page="./Edit" asp-route-varorId="@vara.Id">
-                    <i class="fas fa-edit"></i>
-                </a>
-                <a class="btn btn-sm border-danger" asp-page="./Delete" asp-route-varorId="@vara.Id">
-                    <i>Ta bort</i>
-                </a>
+                
                 <a href="http://www.google.com/search?q=@vara.Name" target="_blank" class="btn btn-lg">
                     <i class="fas fa-search "></i>
                 </a>
             </div>
         </div>
-       
+
     }
 </div>
 <br />
@@ -57,7 +34,7 @@
     <div class="card bg-info">
         <div class="card-header">
             <div class="text-white font-weight-bold">
-                Inga varor i listan! Lägg till något gott vettja!
+                Inga varor i korgen!
             </div>
         </div>
     </div>
@@ -119,3 +96,4 @@ else if (Model.cheapestList.Count() > 1)
 
     </div>
 }
+
