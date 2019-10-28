@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplicationASP.Models;
 using WebApplicationASP.Services;
+using VarorLibrary;
 
 namespace WebApplicationASP.Controllers
 {
@@ -20,7 +21,7 @@ namespace WebApplicationASP.Controllers
 
         public JsonFileProductService ProductService { get; }
 
-        public IEnumerable<Product> Get()
+        public IEnumerable<VarorModel> Get()
         {
             return ProductService.GetProducts();
         }
@@ -28,7 +29,7 @@ namespace WebApplicationASP.Controllers
 
         [Route("Rate")]
         [HttpGet]
-        public ActionResult Get([FromQuery]string ProductId, 
+        public ActionResult Get([FromQuery]int ProductId, 
                                 [FromQuery ]int Rating)
         {
             ProductService.AddRating(ProductId, Rating);

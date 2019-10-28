@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Varor.Data;
 using WebApplicationASP.Models;
 using WebApplicationASP.Services;
+using VarorLibrary;
 
 namespace WebApplicationASP
 {
@@ -71,7 +72,7 @@ namespace WebApplicationASP
                 endpoints.MapGet("/products", (context) =>
                 {
                     var products = app.ApplicationServices.GetService<JsonFileProductService>().GetProducts();
-                    var json = JsonSerializer.Serialize<IEnumerable<Product>>(products);
+                    var json = JsonSerializer.Serialize<IEnumerable<VarorModel>>(products);
                     return context.Response.WriteAsync(json);
                 });
             });

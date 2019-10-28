@@ -1,0 +1,25 @@
+[
+  {
+    "Id": 1,
+    "Name": "Blåbär",
+    "Price": 12.90,
+    "Ratings": [
+    ]
+  },
+  {
+    "Id": 2,
+    "Name": "Hallon",
+    "Price": 19.90,
+    "Ratings": [
+      2
+    ]
+  },
+  {
+    "Id": 3,
+    "Name": "Kalkon",
+    "Price": 29.90,
+    "Ratings": [
+      2
+    ]
+  }
+]

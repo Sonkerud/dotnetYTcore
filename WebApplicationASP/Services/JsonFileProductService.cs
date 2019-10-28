@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using WebApplicationASP.Models;
+using VarorLibrary;
+using Varor.Data;
 
 namespace WebApplicationASP.Services
 {
@@ -19,17 +21,19 @@ namespace WebApplicationASP.Services
         }
 
         public IWebHostEnvironment WebHostEnvironment { get; }
+        private readonly IVarorData varorData;
+        public IEnumerable<VarorModel> Varor { get; set; }
 
         private string JsonFileName
         {
-            get { return Path.Combine(WebHostEnvironment.WebRootPath, "data", "products.json"); }
+            get { return Path.Combine(WebHostEnvironment.WebRootPath, "data", "productsfruit.json"); }
         }
 
-        public IEnumerable<Product> GetProducts()
+        public IEnumerable<VarorModel> GetProducts()
         {
             using (var jsonFileReader = File.OpenText(JsonFileName))
             {
-                return JsonSerializer.Deserialize<Product[]>(jsonFileReader.ReadToEnd(),
+                return JsonSerializer.Deserialize<VarorModel[]>(jsonFileReader.ReadToEnd(),
                     new JsonSerializerOptions
                     {
                         PropertyNameCaseInsensitive = true
@@ -37,7 +41,13 @@ namespace WebApplicationASP.Services
             }
         }
 
-        public void AddRating(string productId, int rating)
+        public IEnumerable<VarorModel> GetProductsVaror()
+        {
+            Varor = varorData.GetVaraByName();
+            return Varor;
+        }
+
+        public void AddRating(int productId, int rating)
         {
             var products = GetProducts();
 
@@ -54,7 +64,7 @@ namespace WebApplicationASP.Services
 
             using (var outputStream = File.OpenWrite(JsonFileName))
             {
-                JsonSerializer.Serialize<IEnumerable<Product>>(
+                JsonSerializer.Serialize<IEnumerable<VarorModel>>(
                     new Utf8JsonWriter(outputStream, new JsonWriterOptions
                     {
                         SkipValidation = true,

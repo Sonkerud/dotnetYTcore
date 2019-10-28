@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.Text.Json;
 
 namespace VarorLibrary
 {
@@ -12,5 +13,10 @@ namespace VarorLibrary
         public string Name { get; set; }
         [Required]
         public double Price { get; set; }
+        public int[] Ratings { get; set; }
+
+        public override string ToString() => JsonSerializer.Serialize<VarorModel>(this);
     }
+
+   
 }

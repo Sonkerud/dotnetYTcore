@@ -1,0 +1,134 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using WebApplicationASP.Services
+@using WebApplicationASP.Models
+@using VarorLibrary
+@using Varor.Data
+@inject JsonFileProductService ProductService
+
+
+    <div class="card-columns">
+        @foreach (var vara in ProductService.GetProducts())
+        {
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>@vara.Name</h4>
+                </div>
+                <div class="card-header text-center">
+                    <p class="card-text font-weight-bold">Pris: @vara.Price kr</p>
+                </div>
+                <div class="card-footer text-center bg-white">
+                    <a class="btn btn-lg" asp-page="./Edit" asp-route-varorId="@vara.Id">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="btn btn-sm border-danger" asp-page="./Delete" asp-route-varorId="@vara.Id">
+                        <i>Ta bort</i>
+                    </a>
+                    <a href="http://www.google.com/search?q=@vara.Name" target="_blank" class="btn btn-lg">
+                        <i class="fas fa-search "></i>
+                    </a>
+                </div>
+            </div>
+            <small class="text-muted">
+                <button @onclick="( e=> SelectProduct(vara.Id))"
+                        data-toggle="modal" data-target="#productModal" class="btn btn-primary">
+                    More Info
+                </button>
+            </small>
+        }
+    </div>
+
+
+
+@if (selectedProduct != null)
+{
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productTitle">@selectedProduct.Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-img" style="background-image: url('@selectedProduct.Name');">
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">@selectedProduct.Price</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @if (voteCount == 0)
+                    {
+                        <span>Be the first tro vote!</span>
+                    }
+                    else
+                    {
+                        <span>
+                            @voteCount @voteLabel
+                        </span>
+                    }
+
+                    @for (int i = 0; i < 6; i++)
+                    {
+                        var currentStar = i;
+                        if (i <= currentRating)
+                        {
+                            <span class="fa fa-star checked" @onclick="(e=> SubmitRating(currentStar))"></span>
+                        }
+                        else
+                        {
+                            <span class="fa fa-star" @onclick="(e=> SubmitRating(currentStar))"></span>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+@code {
+    VarorModel selectedProduct;
+    int selectedProductId;
+
+    void SelectProduct(int productId)
+    {
+        selectedProductId = productId;
+        selectedProduct = ProductService.GetProducts().First(x => x.Id == productId);
+        GetCurrentRating();
+    }
+
+    int currentRating = 0;
+    int voteCount = 0;
+    string voteLabel;
+
+    void GetCurrentRating()
+    {
+        if (selectedProduct.Ratings == null)
+        {
+            currentRating = 0;
+            voteCount = 0;
+        }
+        else
+        {
+            voteCount = selectedProduct.Ratings.Count();
+            voteLabel = voteCount > 1 ? "Votes" : "Vote";
+            currentRating = selectedProduct.Ratings.Sum() / voteCount;
+        }
+        System.Console.WriteLine($"Current rating for {selectedProduct.Id}: {currentRating}");
+    }
+
+    void SubmitRating(int rating)
+    {
+        System.Console.WriteLine($"Rating received for {selectedProduct.Id}: {rating}");
+        ProductService.AddRating(selectedProductId, rating);
+        SelectProduct(selectedProductId);
+    }
+
+}
