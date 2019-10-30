@@ -71,7 +71,7 @@ namespace WebApplicationASP.Pages.VarorModels
                 }
                 //varorData.Add(VarorModel);
             }
-            varorData.Commit();
+            //varorData.Commit();
             return RedirectToPage("./List");
         }
         ////For SQL
