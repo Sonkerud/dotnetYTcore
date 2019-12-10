@@ -41,11 +41,11 @@ namespace WebApplicationASP.Services
             }
         }
 
-        public IEnumerable<VarorModel> GetProductsVaror()
-        {
-            Varor = varorData.GetVaraByName();
-            return Varor;
-        }
+        //public IEnumerable<VarorModel> GetProductsVaror()
+        //{
+        //    Varor = varorData.GetVaraByName();
+        //    return Varor;
+        //}
 
         public void AddRating(int productId, int rating)
         {

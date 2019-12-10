@@ -21,6 +21,7 @@ namespace WebApplicationASP.Pages.VarorModels
         {
             this.varorData = varorData;
         }
+
         public IActionResult OnGet(int? varorId)
         {
             if (varorId.HasValue)
