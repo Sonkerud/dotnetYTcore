@@ -21,5 +21,4 @@ namespace Varor.Data
         VarorModel Delete(int id);
         int GetCountofVaror();
     }
-
 }

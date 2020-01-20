@@ -40,8 +40,6 @@ namespace Varor.Data
                 new VarorModel { Id = 4, Name = "Klementin", Price = 59},
                 new VarorModel { Id = 4, Name = "Mandarin", Price = 39.90},
                 new VarorModel { Id = 4, Name = "Ugli", Price = 29.90},
-
-
             };
         }
 
